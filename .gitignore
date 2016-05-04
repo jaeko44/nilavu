@@ -47,4 +47,7 @@ Gemfile.lock
 /public/stylesheet-cache/*
 /public/tombstone/*
 /bundle/*
+/public/html/component-create/.sass-cache/*
 .sass-cache/*
+
+

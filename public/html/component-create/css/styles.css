@@ -750,12 +750,6 @@ html .ui-bar-a a, html .ui-body-a a, html body .ui-group-theme-a a {
   padding: .8em 1em .8em;
   border: none; }
 
-label[for='event-requests'], .tag.tag-request {
-  color: #d48900 !important; }
-
-label[for='event-jobs'], .tag.tag-job {
-  color: #0099cc !important; }
-
 .ui-mini .ui-btn {
   font-size: inherit; }
 
@@ -845,7 +839,7 @@ html .ui-bar-a .ui-btn:visited, html .ui-body-a .ui-btn:visited, html body .ui-g
 .log-list .tag {
   float: none; }
 
-label[for='event-sessions'], .tag.tag-session {
+.tag.tag-action {
   color: #177283 !important; }
 
 .log-list .ui-block-a div {
@@ -866,10 +860,7 @@ label[for='event-sessions'], .tag.tag-session {
 .ui-mini {
   margin: .446em; }
 
-label[for='event-shell'], .tag.tag-shell {
-  color: #838e00 !important; }
-
-label[for='event-incidents'], .tag.tag-incident {
+.tag.tag-error {
   color: #d96557 !important; }
 
 .ui-controlgroup-controls {
@@ -1375,8 +1366,25 @@ img.inSelect {
   margin-bottom: 20px;
   position: relative;
   z-index: 10;
-  background-color: transparent; }
-  .tabsos li {
+  background-color: transparent;
+  background-position: center; }
+  .tabsos li .tabsos {
+    -moz-border-radius-topleft: 5px;
+    -webkit-border-top-left-radius: 5px;
+    border-top-left-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    -webkit-border-top-right-radius: 5px;
+    border-top-right-radius: 5px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    background-color: #f0f0f0;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 10;
+    background-color: transparent; }
+  .tabsos li .tabsos li {
     list-style-image: none;
     list-style-type: none;
     margin-left: 0;
@@ -1390,9 +1398,11 @@ img.inSelect {
     margin-top: 30px;
     background-color: #E9E7E7;
     width: 98px; }
-    .tabsos li:first-child {
+    .tabsos li .tabsos li:first-child {
       margin-left: 0px; }
-  .tabsos a {
+  .tabsos li .tabsos li:first-child {
+    margin-left: 0px; }
+  .tabsos li .tabsos a {
     display: -moz-inline-stack;
     display: inline-block;
     vertical-align: middle;
@@ -1400,7 +1410,7 @@ img.inSelect {
     color: #666;
     font-size: 17px;
     padding: 0px; }
-  .tabsos li.active {
+  .tabsos li .tabsos li.active {
     background-color: #fff;
     color: #333;
     font-weight: 800;
@@ -1412,186 +1422,319 @@ img.inSelect {
     background-color: #f5f5f5;
     border-radius: 5px;
     padding-right: 0px; }
-    .tabsos li.active a {
+    .tabsos li .tabsos li.active a {
       padding: 0px;
       width: 100%;
       color: #549DD6;
       font-size: 20px;
       padding-top: 5px; }
-    .tabsos li.active .distro span {
+    .tabsos li .tabsos li.active .distro span {
       display: block !important; }
-    .tabsos li.active .icon {
+    .tabsos li .tabsos li.active .icon {
       height: 72px;
       margin: 10px auto;
       width: 72px;
       margin-top: 20px;
       margin-top: 0px;
       margin-bottom: 10px; }
-
-.tabs2 li {
-  margin-top: 15px; }
-  .tabs2 li.active {
-    height: 50px; }
-  .tabs2 li a {
-    width: 100%;
-    padding-top: 5px;
-    padding-bottom: 5px; }
-
-.distro {
-  display: inline;
-  float: left;
-  text-align: center;
-  color: #c2c2c2;
-  width: 100%; }
-  .distro span {
-    display: none;
-    color: #549DD6; }
-  .distro .icon {
-    -webkit-border-radius: 51%;
-    -moz-border-radius: 51%;
-    border-radius: 51%;
-    background-repeat: no-repeat;
-    background-position: center center;
-    height: 50px;
-    margin: 10px auto;
-    width: 53px;
-    margin-top: 12px;
-    margin-bottom: 10px;
+  .tabsos .tabs2 li {
+    margin-top: 15px; }
+    .tabsos .tabs2 li.active {
+      height: 50px; }
+    .tabsos .tabs2 li a {
+      width: 100%;
+      padding-top: 5px;
+      padding-bottom: 5px; }
+  .tabsos .distro {
+    display: inline;
+    float: left;
+    text-align: center;
+    color: #c2c2c2;
+    width: 100%; }
+    .tabsos .distro span {
+      display: none;
+      color: #549DD6; }
+    .tabsos .distro .tabsos li.active a {
+      padding: 0px;
+      width: 100%;
+      color: #549DD6;
+      font-size: 20px;
+      padding-top: 5px; }
+    .tabsos .distro .tabsos li.active .distro span {
+      display: block !important; }
+    .tabsos .distro .tabsos li.active .icon {
+      height: 72px;
+      margin: 10px auto;
+      width: 72px;
+      margin-top: 20px;
+      margin-top: 0px;
+      margin-bottom: 10px; }
+    .tabsos .distro .tabs2 li.active {
+      height: 50px; }
+    .tabsos .distro .tabs2 li {
+      margin-top: 15px; }
+    .tabsos .distro .tabs2 li a {
+      width: 100%;
+      padding-top: 5px;
+      padding-bottom: 5px; }
+    .tabsos .distro .distro {
+      display: inline;
+      float: left;
+      text-align: center;
+      color: #c2c2c2;
+      width: 100%; }
+    .tabsos .distro .distro span {
+      display: none;
+      color: #549DD6; }
+    .tabsos .distro .distro .icon {
+      -webkit-border-radius: 51%;
+      -moz-border-radius: 51%;
+      border-radius: 51%;
+      background-repeat: no-repeat;
+      background-position: center center;
+      height: 50px;
+      margin: 10px auto;
+      width: 53px;
+      margin-top: 12px;
+      margin-bottom: 10px;
+      background-image: url(../images/osimages1.png); }
+  .tabsos .tabsos li.active .ubuntu .icon {
+    background-position: 6px -221px; }
+  .tabsos .tabsos li.active .fedora .icon {
+    background-position: 6px -144px; }
+  .tabsos .tabsos li.active .centos .icon {
+    background-position: 8px 9px; }
+  .tabsos .tabsos li.active .debian .icon {
+    background-position: 8px -62px; }
+  .tabsos .tabsos li.active .windows .icon {
+    background-position: 3px -297px; }
+  .tabsos .ubuntu .icon {
+    background-position: -94px -224px; }
+  .tabsos .fedora .icon {
+    background-position: -92px -150px; }
+  .tabsos .centos .icon {
+    background-position: -99px -9px; }
+  .tabsos .debian .icon {
+    background-position: -95px -77px; }
+  .tabsos .windows .icon {
+    background-position: -93px -308px; }
+  .tabsos .opensuse .icon {
+    background-image: url(../images/opensuse1.png);
+    background-size: 94%; }
+  .tabsos .tabsos li.active .opensuse .icon {
+    background-image: url(../images/opensuse.png);
+    background-size: 90%; }
+  .tabsos .coreos .icon {
+    background-image: url(../images/CoreOS1.png);
+    background-size: 94%; }
+  .tabsos .tabsos li.active .coreos .icon {
+    background-image: url(../images/CoreOS.png);
+    background-size: 90%; }
+  .tabsos .applications .icon, .tabsos .apps .icon {
+    background-image: url(../images/app2.png);
+    background-size: 74%; }
+  .tabsos .tabsos li.active .applications .icon, .tabsos .tabsos li.active .apps .icon {
+    background-image: url(../images/app3.png);
+    background-size: 70%; }
+  .tabsos .oscontainer {
+    margin-top: -37px;
+    padding-top: 56px;
+    margin-right: 0px;
+    border: 1px solid #dcdcdc;
+    border-top: 0px;
+    background-color: #f5f5f5;
+    margin-bottom: 25px; }
+  .tabsos .distro .icon {
     background-image: url(../images/osimages1.png); }
-
-.tabsos li.active .ubuntu .icon {
-  background-position: 6px -221px; }
-.tabsos li.active .fedora .icon {
-  background-position: 6px -144px; }
-.tabsos li.active .centos .icon {
-  background-position: 8px 9px; }
-.tabsos li.active .debian .icon {
-  background-position: 8px -62px; }
-.tabsos li.active .windows .icon {
-  background-position: 3px -297px; }
-
-.ubuntu .icon {
-  background-position: -94px -224px; }
-
-.fedora .icon {
-  background-position: -92px -150px; }
-
-.centos .icon {
-  background-position: -99px -9px; }
-
-.debian .icon {
-  background-position: -95px -77px; }
-
-.windows .icon {
-  background-position: -93px -308px; }
-
-.opensuse .icon {
-  background-image: url(../images/opensuse1.png);
-  background-size: 94%; }
-
-.tabsos li.active .opensuse .icon {
-  background-image: url(../images/opensuse.png);
-  background-size: 90%; }
-
-.coreos .icon {
-  background-image: url(../images/CoreOS1.png);
-  background-size: 94%; }
-
-.tabsos li.active .coreos .icon {
-  background-image: url(../images/CoreOS.png);
-  background-size: 90%; }
-
-.applications .icon, .apps .icon {
-  background-image: url(../images/app2.png);
-  background-size: 74%; }
-
-.tabsos li.active .applications .icon, .tabsos li.active .apps .icon {
-  background-image: url(../images/app3.png);
-  background-size: 70%; }
-
-.oscontainer {
-  margin-top: -37px;
-  padding-top: 56px;
-  margin-right: 0px;
-  border: 1px solid #dcdcdc;
-  border-top: 0px;
-  background-color: #f5f5f5;
-  margin-bottom: 25px;
-  margin-top: -36px;
-  padding: 10px;
-  padding-top: 38px;
-  margin-right: 0px;
-  border: 1px solid #dcdcdc;
-  border-top: 0px;
-  background-color: #f5f5f5;
-  margin-bottom: 25px;
-  padding-bottom: 2px;
-  width: 99.9%; }
-
-a {
-  text-decoration: none;
-  color: #398bce; }
-
-.tabsos a:hover {
-  text-decoration: none !important;
-  color: #666; }
-
-.tabs li:first-child, .tabs li.first {
-  padding-left: 0; }
-.tabs .active a {
-  color: #333;
-  font-weight: 500; }
-
-.version {
-  width: 195px;
-  float: left;
-  height: 150px;
-  padding: 12px;
-  border: 2px solid #4196E4;
-  border-radius: 6px;
-  margin-bottom: 15px;
-  margin-left: 15px; }
-
-.selectlinux {
-  width: 100%;
-  height: 190px; }
-
-.version_select, .wind {
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
-  display: -moz-inline-stack;
-  display: inline-block;
-  vertical-align: middle;
-  zoom: 1;
-  background-color: #E9E7E7;
-  color: #666;
-  padding: 10px 0;
-  width: 205px;
-  text-align: center;
-  margin: 0 10px 20px;
-  line-height: 24px;
-  cursor: pointer;
-  font-weight: 400;
-  font-size: 16px; }
-
-.version_select.apps {
-  width: 148px;
-  height: 148px;
-  border-radius: 0px;
-  border: 1px solid #e7e7e7;
-  background-color: #fff;
-  padding-top: 0px; }
-
-.apps .appsicon {
-  width: 100%;
-  height: 110px;
-  background-color: #fff;
-  margin-bottom: 5px;
-  background-repeat: no-repeat;
-  background-position: center; }
+  .tabsos .tabsos li.active .ubuntu .icon {
+    background-position: 6px -221px; }
+  .tabsos .tabsos li.active .fedora .icon {
+    background-position: 6px -144px; }
+  .tabsos .tabsos li.active .centos .icon {
+    background-position: 8px 9px; }
+  .tabsos .tabsos li.active .debian .icon {
+    background-position: 8px -62px; }
+  .tabsos .tabsos li.active .windows .icon {
+    background-position: 3px -297px; }
+  .tabsos .ubuntu .icon {
+    background-position: -94px -224px; }
+  .tabsos .fedora .icon {
+    background-position: -92px -150px; }
+  .tabsos .centos .icon {
+    background-position: -99px -9px; }
+  .tabsos .debian .icon {
+    background-position: -95px -77px; }
+  .tabsos .windows .icon {
+    background-position: -93px -308px; }
+  .tabsos .opensuse .icon {
+    background-image: url(../images/opensuse1.png);
+    background-size: 94%; }
+  .tabsos .tabsos li.active .opensuse .icon {
+    background-image: url(../images/opensuse.png);
+    background-size: 90%; }
+  .tabsos .coreos .icon {
+    background-image: url(../images/CoreOS1.png);
+    background-size: 94%; }
+  .tabsos .tabsos li.active .coreos .icon {
+    background-image: url(../images/CoreOS.png);
+    background-size: 90%; }
+  .tabsos .applications .icon, .tabsos .apps .icon {
+    background-image: url(../images/app2.png);
+    background-size: 74%; }
+  .tabsos .tabsos li.active .applications .icon, .tabsos .tabsos li.active .apps .icon {
+    background-image: url(../images/app3.png);
+    background-size: 70%; }
+  .tabsos .oscontainer {
+    margin-top: -37px;
+    padding-top: 56px;
+    margin-right: 0px;
+    border: 1px solid #dcdcdc;
+    border-top: 0px;
+    background-color: #f5f5f5;
+    margin-bottom: 25px; }
+  .tabsos .oscontainer {
+    margin-top: -36px;
+    padding: 10px;
+    padding-top: 38px;
+    margin-right: 0px;
+    border: 1px solid #dcdcdc;
+    border-top: 0px;
+    background-color: #f5f5f5;
+    margin-bottom: 25px;
+    padding-bottom: 2px;
+    width: 99.9%; }
+  .tabsos a {
+    text-decoration: none;
+    color: #398bce; }
+  .tabsos .tabsos a:hover {
+    text-decoration: none !important;
+    color: #666; }
+  .tabsos .tabs li:first-child, .tabsos .tabs li.first {
+    padding-left: 0; }
+  .tabsos .tabs .active a {
+    color: #333;
+    font-weight: 500; }
+  .tabsos .version {
+    width: 195px;
+    float: left;
+    height: 150px;
+    padding: 12px;
+    border: 2px solid #4196E4;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    margin-left: 15px; }
+  .tabsos .selectlinux {
+    width: 100%;
+    height: 190px; }
+  .tabsos .version_select, .tabsos .wind {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: middle;
+    zoom: 1;
+    background-color: #E9E7E7;
+    color: #666;
+    padding: 10px 0;
+    width: 205px;
+    text-align: center;
+    margin: 0 10px 20px;
+    line-height: 24px;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 16px; }
+  .tabsos .version_select.apps {
+    width: 148px;
+    height: 148px;
+    border-radius: 0px;
+    border: 1px solid #e7e7e7;
+    background-color: #fff;
+    padding-top: 0px; }
+  .tabsos a {
+    text-decoration: none;
+    color: #398bce; }
+  .tabsos .tabsos a:hover {
+    text-decoration: none !important;
+    color: #666; }
+  .tabsos .tabs li:first-child, .tabsos .tabs li.first {
+    padding-left: 0; }
+  .tabsos .tabs .active a {
+    color: #333;
+    font-weight: 500; }
+  .tabsos .version {
+    width: 195px;
+    float: left;
+    height: 150px;
+    padding: 12px;
+    border: 2px solid #4196E4;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    margin-left: 15px; }
+  .tabsos .selectlinux {
+    width: 100%;
+    height: 190px; }
+  .tabsos .version_select, .tabsos .wind {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: middle;
+    zoom: 1;
+    background-color: #E9E7E7;
+    color: #666;
+    padding: 10px 0;
+    width: 205px;
+    text-align: center;
+    margin: 0 10px 20px;
+    line-height: 24px;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 16px; }
+  .tabsos .version_select.apps {
+    width: 148px;
+    height: 148px;
+    border-radius: 0px;
+    border: 1px solid #e7e7e7;
+    background-color: #fff;
+    padding-top: 0px; }
+  .tabsos .apps .appsicon {
+    width: 100%;
+    height: 110px;
+    background-color: #fff;
+    margin-bottom: 5px;
+    background-repeat: no-repeat;
+    background-position: center; }
+  .tabsos .na {
+    cursor: not-allowed; }
+  .tabsos .version_select.versionactive {
+    background-color: #549DD6;
+    color: #fff; }
+  .tabsos .version_select.apps.versionactive {
+    border: 1px solid #549DD6; }
+  .tabsos .version_select input[type='radio'] {
+    display: none; }
+  .tabsos .regionContainer input[type='radio'] {
+    display: none; }
+  .tabsos .tabsos li {
+    width: 11.877142857142857%; }
+    .tabsos .tabsos li.active {
+      width: 18%; }
+  .tabsos .tabsos.tabs2 li {
+    width: 50%; }
+  .tabsos .input-error {
+    border: 1px solid #FB2C0B !important; }
+  .tabsos .input-search {
+    margin: 0 auto;
+    width: 50%;
+    margin-bottom: 15px; }
+  .tabsos .form-control.flat {
+    border-radius: 0; }
 
 .na {
   cursor: not-allowed; }
@@ -1599,18 +1742,22 @@ a {
 .version_select.versionactive {
   background-color: #549DD6;
   color: #fff; }
+
 .version_select.apps.versionactive {
   border: 1px solid #549DD6; }
+
 .version_select input[type='radio'] {
   display: none; }
 
 .regionContainer input[type='radio'] {
   display: none; }
 
+.tabsos li.active {
+  width: 18%; }
+
 .tabsos li {
   width: 11.877142857142857%; }
-  .tabsos li.active {
-    width: 18%; }
+
 .tabsos.tabs2 li {
   width: 50%; }
 

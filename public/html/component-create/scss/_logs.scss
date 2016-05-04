@@ -454,14 +454,6 @@ html {
   }
 }
 
-label[for='event-requests'], .tag.tag-request {
-  color: #d48900 !important;
-}
-
-label[for='event-jobs'], .tag.tag-job {
-  color: #0099cc !important;
-}
-
 .ui-mini .ui-btn {
   font-size: inherit;
 }
@@ -586,7 +578,7 @@ html {
   float: none;
 }
 
-label[for='event-sessions'], .tag.tag-session {
+.tag.tag-action {
   color: #177283 !important;
 }
 
@@ -614,11 +606,7 @@ label[for='event-sessions'], .tag.tag-session {
   margin: .446em;
 }
 
-label[for='event-shell'], .tag.tag-shell {
-  color: #838e00 !important;
-}
-
-label[for='event-incidents'], .tag.tag-incident {
+.tag.tag-error {
   color: #d96557 !important;
 }
 
