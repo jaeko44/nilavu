@@ -1,10 +1,13 @@
 import BufferedContent from 'nilavu/mixins/buffered-content';
-import { spinnerHTML } from 'nilavu/helpers/loading-spinner';
+import {spinnerHTML} from 'nilavu/helpers/loading-spinner';
 import Marketplaces from 'nilavu/models/marketplaces';
-import { popupAjaxError } from 'nilavu/lib/ajax-error';
+import {popupAjaxError} from 'nilavu/lib/ajax-error';
 import computed from 'ember-addons/ember-computed-decorators';
+import showModal from 'nilavu/lib/show-modal';
 
-export default Ember.Controller.extend(BufferedContent, {
+import OpenComposer from "nilavu/mixins/open-composer";
+
+export default Ember.Controller.extend(BufferedContent, OpenComposer, {
     needs: ['application'],
     loading: false,
 
@@ -22,17 +25,13 @@ export default Ember.Controller.extend(BufferedContent, {
         for (var order in grouped_results) {
             otmap.push({order: order, cattype: grouped_results[order].get('firstObject.cattype').toLowerCase()});
         }
-
         return otmap;
     }.property('model.results'),
-
-
 
     //check the freewheeling site setting flag for true or false
     minifiedVersion: function() {
         return false;
     }.property('selectedTab'),
-
 
     actions: {
 
@@ -40,9 +39,29 @@ export default Ember.Controller.extend(BufferedContent, {
             alert('showMakitem');
         },
 
-
         save() {},
 
+        createTopic(item) {
+            const self = this;
+            var itemOption = "applications";
+            // Don't show  if we're still loading, may be show a growl.
+            if (self.get('loading')) {
+                return;
+            }
+            if (Ember.isEqual(item.cattype, 'TORPEDO'))
+                itemOption = "virtualmachines";
+            self.set('loading', true);
+            const promise = self.openComposer(self.controllerFor("discovery/topics")).then(function(result) {
+                self.set('loading', false);
+                showModal('editCategory', {
+                    model: result,
+                    smallTitle: false,
+                    titleCentered: true
+                }).setProperties({marketplaceItem: item, selectedItemOption: itemOption});
+            }).catch(function(e) {
+                self.set('loading', false);
+            });
+        }
     },
 
     hasError: Ember.computed.or('model.notFoundHtml', 'model.message'),
