@@ -95,3 +95,14 @@ Buttons & Dropdown Buttons
   padding-left: 0;
   padding-right: 0;
 }
+
+button.link-icons{
+  // Give some space to avoid clustering.
+   > .pull-right  {
+      margin-left: 20px;
+   }
+   > span.glyphicon {
+      margin-right: 5px;
+   }
+}
+

@@ -1,4 +1,5 @@
 <div class="rt-box col-xs-12 col-sm-9 col-md-10 c_bg_white c_height_5">
+    Title: {{machineStatus.message}}
     {{topic-list-header currentUser=currentUser title=title nameEnabled=nameEnabled name=name subTitleEnabled=subTitleEnabled subTitle=subTitle}}
     <div class="bottom-divider"></div>
     <div class="">
@@ -23,18 +24,21 @@
                     {{conditional-loading-spinner condition=showRebootSpinner size="large"}}
                 </span>
             </button>
+            {{#if showStop}}
             <button type="button" class="btn btn-default pull-right link-icons" {{action "stop"}}>
                 <span class="glyphicon glyphicon-pause"></span> Shutdown
                 <span class="pull-right">
                     {{conditional-loading-spinner condition=showStopSpinner size="large"}}
                 </span>
             </button>
+            {{else}}
             <button type="button" class="btn btn-default pull-right link-icons" {{action "start"}}>
                 <span class="glyphicon glyphicon-play"></span> Start
                 <span class="pull-right">
                     {{conditional-loading-spinner condition=showStartSpinner size="large"}}
                 </span>
             </button>
+            {{/if}}
         </div>
     </div>
     <section class="vm">

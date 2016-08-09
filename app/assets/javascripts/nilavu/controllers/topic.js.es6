@@ -20,6 +20,7 @@ export default Ember.Controller.extend(BufferedContent, {
     spinnerRebootIn: false,
     spinnerDeleteIn: false,
     spinnerRefreshIn: false,
+    stopVisible: true,
     rerenderTriggers: ['isUploading'],
 
 
@@ -56,14 +57,22 @@ export default Ember.Controller.extend(BufferedContent, {
         return this.selectedTab == 'logs';
     }.property('selectedTab'),
 
+    content_state: function() {
+        return I18n.t("vm_management.info.content_state");
+    }.property(),
+    
     title: Ember.computed.alias('fullName'),
-
+    
     fullName: function() {
         //var js = this._filterInputs("domain");
         //return this.get('model.name') + "." + js;
         return this.get('model.name')
     }.property('model.name'),
-
+    
+    machineStatus: function() {
+        return this.get('model.status')
+    }.property('model.status.message'),
+    
     hasInputs: Em.computed.notEmpty('model.inputs'),
     hasOutputs: Em.computed.notEmpty('model.outputs'),
 
@@ -82,6 +91,10 @@ export default Ember.Controller.extend(BufferedContent, {
     showStartSpinner: function() {
         return this.get('spinnerStartIn');
     }.property('spinnerStartIn'),
+
+    showStop: function() {
+        return this.get('stopVisible');
+    }.property('stopVisible'),
 
     showStopSpinner: function() {
         return this.get('spinnerStopIn');
@@ -176,8 +189,10 @@ export default Ember.Controller.extend(BufferedContent, {
             }).then(function(result) {
                 self.set('spinnerStartIn', false);
                 if (result.success) {
+                    self.set('stopVisible', true);
                     self.notificationMessages.success(I18n.t("vm_management.start_success"));
                 } else {
+                    self.set('stopVisible', false);
                     self.notificationMessages.error(I18n.t("vm_management.error"));
                 }
             }).catch(function(e) {
@@ -189,6 +204,7 @@ export default Ember.Controller.extend(BufferedContent, {
 
         stop() {
             var self = this;
+            this.set('stopVisible', true);
             this.set('spinnerStopIn', true);
             Nilavu.ajax('/t/' + this.get('model').id + "/stop", {
                 data: this.getData("control"),
@@ -196,12 +212,15 @@ export default Ember.Controller.extend(BufferedContent, {
             }).then(function(result) {
                 self.set('spinnerStopIn', false);
                 if (result.success) {
+                    self.set('stopVisible', false);
                     self.notificationMessages.success(I18n.t("vm_management.stop_success"));
                 } else {
+                    self.set('stopVisible', true);
                     self.notificationMessages.error(I18n.t("vm_management.error"));
                 }
             }).catch(function(e) {
                 self.set('spinnerStopIn', false);
+                self.set('showStop', false);
                 console.log(e);
                 self.notificationMessages.error(I18n.t("vm_management.error"));
             });

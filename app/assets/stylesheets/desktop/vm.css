@@ -30,6 +30,8 @@
     -webkit-transition: all 0.5s;
     /* Safari 3.1 to 6.0 */
     transition: all 0.5s;
+    /* We need to add a hidden border as only colour can transition. */
+    border-bottom: 3px solid #ffffff;
 }
 .vm .tabs a:hover {
     color: #3498db;

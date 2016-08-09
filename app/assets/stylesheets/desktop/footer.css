@@ -2,20 +2,24 @@
     font-size: 12px;
     padding: 8px 20px 5px;
 }
-.footer:after, .footer:before {
+
+.footer:after,
+.footer:before {
     content: "";
     display: table;
     line-height: 0;
 }
+
 .footer:after {
     clear: both;
 }
+
 .footer .footer-inner {
     display: inline-block;
     float: left;
 }
 .footer .footer-tools {
-    display: inline-block;
+        display: inline-block;
     float: right;
 }
 .footer .footer-tools .go-top {
