@@ -57,10 +57,6 @@ export default Ember.Controller.extend(BufferedContent, {
         return this.selectedTab == 'logs';
     }.property('selectedTab'),
 
-    content_state: function() {
-        return I18n.t("vm_management.info.content_state");
-    }.property(),
-    
     title: Ember.computed.alias('fullName'),
     
     fullName: function() {
