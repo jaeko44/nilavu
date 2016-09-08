@@ -25,6 +25,11 @@ export default Nilavu.Route.extend({
             return false;
         }
 
+        const oneOfError = LaunchStatus.create({event_type: topic.status}).get('errorKey');
+        if (topic && oneOfError) {
+            return false;
+        }
+
         //  const oneOfError   = LaunchStatus.TYPES_ERROR.indexOf(topic.status) >=0;
         return true;
     },
@@ -34,7 +39,7 @@ export default Nilavu.Route.extend({
         const self = this,
             topic = this.modelFor('topic'),
             topicController = this.controllerFor('topic');
-        params.forceLoad = false;
+            params.forceLoad = false;
 
         const promise = topic.reload().then(function(result) {
             topicController.setProperties({model: topic});

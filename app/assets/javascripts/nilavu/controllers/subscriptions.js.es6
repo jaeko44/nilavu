@@ -4,6 +4,9 @@ import Subscriptions from 'nilavu/models/subscriptions';
 import {popupAjaxError} from 'nilavu/lib/ajax-error';
 import {observes, computed} from 'ember-addons/ember-computed-decorators';
 import NilavuURL from 'nilavu/lib/url';
+import {setting} from 'nilavu/lib/computed';
+import {on} from 'ember-addons/ember-computed-decorators';
+import debounce from 'nilavu/lib/debounce';
 
 export default Ember.Controller.extend(BufferedContent, {
     needs: ['application'],
@@ -13,8 +16,6 @@ export default Ember.Controller.extend(BufferedContent, {
     selectedTab: null,
     panels: null,
     showTop: false,
-    resources: [],
-
     subscriber: Ember.computed.alias('model.subscriber'),
     mobavatar: Ember.computed.alias('model.mobavatar_activation'),
 
@@ -58,30 +59,26 @@ export default Ember.Controller.extend(BufferedContent, {
         return otmap;
     }.property('model.results'),
 
-    regions: Ember.computed.alias('model.regions'),
+    submitDisabled: function() {
+        if (Ember.isEmpty(this.get('address')))
+            return true;
+        if (Ember.isEmpty(this.get('city')))
+            return true;
+        if (Ember.isEmpty(this.get('state')))
+            return true;
+        if (Ember.isEmpty(this.get('zipcode')))
+            return true;
+        if (Ember.isEmpty(this.get('company')))
+            return true;
 
-    subRegionOption: function() {
-        if (this.get('regions')) return this.get('regions.firstObject.name');
+        return false;
+    }.property('address', 'city', 'state', 'zipcode', 'company'),
 
-        return "";
-    }.property('regions'),
-
-    regionChanged: function() {
-        if (!this.get('regions')) {
-            return;
-        }
-        const _regionOption = this.get('subRegionOption');
-
-        const fullFlavor = this.get('regions').filter(function(c) {
-            if (c.name == _regionOption) {
-                return c;
-            }
-        });
-        if (fullFlavor.length > 0) {
-            this.set('model.subresource', fullFlavor.get('firstObject'));
-        }
-    }.observes('model.subregion'),
-
+    otpDisabled: function() {
+        if (Ember.isEmpty(this.get('otpNumber')))
+            return true;
+        return false;
+    }.property('otpNumber'),
 
     actions: {
         activate() {
@@ -103,9 +100,9 @@ export default Ember.Controller.extend(BufferedContent, {
                 self.set('formSubmitted', false);
                 var rs = result.subscriber;
                 if (Em.isEqual(rs.result, "success")) {
-                    NilavuURL.routeTo('/subscriptions/bill/activation');
+                    NilavuURL.routeTo('/billers/bill/activation');
                 } else {
-                  console.log(JSON.stringify(rs));
+                    console.log(JSON.stringify(rs));
                     self.notificationMessages.error(I18n.t(rs.error));
                 }
             });
@@ -129,10 +126,7 @@ export default Ember.Controller.extend(BufferedContent, {
                 }
             });
         }
-
     },
-
-
 
     hasError: Ember.computed.or('model.notFoundHtml', 'model.message'),
 

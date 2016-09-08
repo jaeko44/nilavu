@@ -77,7 +77,7 @@ class User
     end
 
     def repassword
-        Api::Accounts.new.repassword(update_hash_reset)
+        Api::Accounts.new.repassword(update_hash)
     end
 
     def email_available?
@@ -135,31 +135,6 @@ class User
         end
         false
     end
-
-  def to_hash
-    {:email => @email,
-      :api_key => @api_key,
-      :password => @raw_password,
-      :username => User.suggest_firstname(@email),
-      :first_name =>@first_name,
-      :last_name => @last_name,
-      :phone => @phone,
-      :createdAt =>@created_at
-    }
-  end
-
-  def update_hash_reset
-    {:email => @email,
-      :api_key => @api_key,
-      :password => ensure_password_is_hashed,
-      :username => User.suggest_firstname(@email),
-      :first_name => @first_name,
-      :last_name => @last_name,
-      :password_reset_key => @password_reset_key,
-      :phone => @phone,
-      :createdAt =>@created_at
-    }
-  end
 
     def staff?
         admin? && Rails.env.development?
@@ -230,7 +205,6 @@ class User
         team.id if team
     end
 
-
     def to_hash
         {email: @email,
             api_key: @api_key,
@@ -264,7 +238,7 @@ class User
     def update_hash
         {:email => @email,
             :api_key => @api_key,
-            :password => ensure_password_is_hashed,
+            :password => @raw_password,
             :password_reset_key => @password_reset_key,
             :password_reset_sent_at => @password_reset_sent_at,
             :first_name => @first_name,

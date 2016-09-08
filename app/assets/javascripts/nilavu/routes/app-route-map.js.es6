@@ -16,7 +16,6 @@ export default function() {
                 path: '/' + filter
             });
         });
-
     });
 
     //sshkey routes
@@ -98,16 +97,17 @@ export default function() {
         this.route('show', {path: '/b/:id'});
     });
 
+    this.resource('billers', {
+        path: '/billers'
+    }, function() {
+        this.route('activate', {path: '/bill/activation'});
+    });
+
     this.resource('subscriptions', {
         path: '/subscriptions'
     }, function() {
+        this.route('show', {path: '/account/activation'});
 
-        this.route('show', {
-            path: '/account/activation'
-        });
-        this.route('activate', {
-            path: '/bill/activation'
-        });
     });
 
 }
