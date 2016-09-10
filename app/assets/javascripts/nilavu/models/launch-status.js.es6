@@ -23,6 +23,7 @@ const LaunchStatusTypes = {
     DOWNLOADED: 'DOWNLOADED',
     DOWNLOADING: 'DOWNLOADING',
     VNCHOSTUPDATING: 'VNCHOSTUPDATING',
+    VNCHOSTUPDATED: 'VNCHOSTUPDATED',
     DNSNAMESKIPPED: 'DNSNAMESKIPPED',
     COOKBOOK_DOWNLOADING: 'COOKBOOK_DOWNLOADING',
     COOKBOOK_DOWNLOADED: 'COOKBOOK_DOWNLOADED',
@@ -50,14 +51,16 @@ const LaunchActionTypes = {
 
 /** there could be more status that are considered successful */
 const LaunchSuccessTypes = {
-    RUNNING: 'RUNNING',
-    STARTED: 'STARTED',
-    STOPPED: 'STOPPED',
-    SNAPSHOTTED: 'SNAPSHOTTED'
+    LAUNCHED: 'LAUNCHED',
+    BOOTSTRAPPED: 'BOOTSTRAPPED'
 };
 
 const LaunchErrorTypes = {
-    ERROR: 'ERROR'
+    ERROR: 'ERROR',
+    PREERROR: 'PREERROR'
+};
+const PostErrorType = {
+    POSTERROR: 'POSTERROR'
 };
 
 const LaunchStatus = RestModel.extend({
@@ -103,6 +106,6 @@ const LaunchStatus = RestModel.extend({
     }
 });
 
-LaunchStatus.reopenClass({TYPES: LaunchStatusTypes, TYPES_ACTION: LaunchActionTypes, TYPES_SUCCESS: LaunchSuccessTypes, TYPES_ERROR: LaunchErrorTypes});
+LaunchStatus.reopenClass({TYPES: LaunchStatusTypes, TYPES_ACTION: LaunchActionTypes, TYPES_SUCCESS: LaunchSuccessTypes, TYPES_ERROR: LaunchErrorTypes, POST_ERROR_TYPE: PostErrorType});
 
 export default LaunchStatus;
