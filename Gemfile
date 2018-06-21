@@ -6,7 +6,7 @@ end
 
 if rails_master?
   gem 'arel', git: 'https://github.com/rails/arel.git'
-  gem 'rails', git: 'https://github.com/rails/rails.git'
+  gem 'rails', '4.2.7.1'
 else
   # Rails 5 is going to ship with Action Cable, we have no use for it as
   # we are API driven, AC introduces dependencies on Event Machine,
@@ -27,7 +27,7 @@ else
   gem 'rails', '~> 4.2.7'
 end
 
-gem 'sprockets', '~> 3.6.3'
+gem 'sprockets', '~> 3.7.2'
 gem 'responders', '~> 2.0'
 
 gem 'http_accept_language', '~>2.0.5', require: false
@@ -36,7 +36,7 @@ gem 'http_accept_language', '~>2.0.5', require: false
 gem 'ember-rails' , '0.18.5'
 gem 'ember-source' , '1.12.2'
 gem 'ember-data-source', "1.0.0.beta.16.1"
-gem "ember-handlebars-template", '0.7.3'
+gem "ember-handlebars-template", "0.7.3"
 gem 'barber', '0.11.1'
 gem 'babel-transpiler', '0.7.0'
 
@@ -75,7 +75,7 @@ gem 'rack-protection' # security
 
 # keep it like this, or else rake asset:precompile will fail
 gem 'sass'
-gem 'sass-rails', '~> 5.0.5'
+gem 'sass-rails', '~> 5.0.6'
 gem 'uglifier'
 
 
@@ -99,7 +99,7 @@ group :test, :development do
   gem 'timecop'
   gem 'rspec-given'
   gem 'rspec-html-matchers'
-  gem 'spork-rails'
+  gem 'spork-rails', '>= 4.0.0'
   gem 'pry-nav'
   gem 'byebug', require: ENV['RM_INFO'].nil?
 end
@@ -120,7 +120,7 @@ gem 'flamegraph', require: false
 gem 'rack-mini-profiler', require: false
 
 # passenger server
-gem 'passenger', group: :production
+gem 'passenger', '>= 5.3.2', group: :production
 
 gem 'rbtrace', require: false, platform: :mri
 
