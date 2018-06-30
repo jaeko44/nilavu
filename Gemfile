@@ -92,7 +92,7 @@ group :test, :development do
   gem 'discourse-qunit-rails', require: 'qunit-rails'
   gem 'mocha', require: false
   gem 'rb-fsevent', require: RUBY_PLATFORM =~ /darwin/i ? 'rb-fsevent' : false
-  gem 'rb-inotify', '~> 0.9', require: RUBY_PLATFORM =~ /linux/i ? 'rb-inotify' : false
+  gem 'rb-inotify', '~> 0.9', '>= 0.9.7'
   gem 'rspec-rails', require: false
   gem 'shoulda', require: false
   gem 'simplecov', require: false
@@ -122,7 +122,7 @@ gem 'rack-mini-profiler', require: false
 # passenger server
 gem 'passenger', group: :production
 
-gem 'rbtrace', require: false, platform: :mri
+gem 'rbtrace', '>= 0.4.8', require: false, platform: :mri
 
 begin
   gem 'stackprof', require: false, platform: [:mri_21, :mri_22, :mri_23]
