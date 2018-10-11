@@ -6,7 +6,7 @@ end
 
 if rails_master?
   gem 'arel', git: 'https://github.com/rails/arel.git'
-  gem 'rails', git: 'https://github.com/rails/rails.git'
+  gem 'rails', '4.2.7.1'
 else
   # Rails 5 is going to ship with Action Cable, we have no use for it as
   # we are API driven, AC introduces dependencies on Event Machine,
@@ -28,7 +28,7 @@ else
 end
 
 gem 'sprockets', '~> 3.6.3'
-gem 'responders', '~> 2.0'
+gem 'responders', '~> 2.3', '>= 2.3.0'
 
 gem 'http_accept_language', '~>2.0.5', require: false
 
@@ -46,7 +46,7 @@ gem 'fast_xor'
 
 gem 'multi_json'
 gem 'mustache'
-gem 'nokogiri'
+gem 'nokogiri', '>= 1.8.5'
 
 gem 'http'
 
@@ -75,7 +75,7 @@ gem 'rack-protection' # security
 
 # keep it like this, or else rake asset:precompile will fail
 gem 'sass'
-gem 'sass-rails', '~> 5.0.5'
+gem 'sass-rails', '~> 5.0.6'
 gem 'uglifier'
 
 
@@ -89,17 +89,17 @@ group :test, :development do
   gem 'listen', '0.7.3', require: false
   gem 'certified', require: false
   gem 'fabrication', '2.9.8', require: false
-  gem 'discourse-qunit-rails', require: 'qunit-rails'
+  gem 'discourse-qunit-rails', '0.0.9'
   gem 'mocha', require: false
   gem 'rb-fsevent', require: RUBY_PLATFORM =~ /darwin/i ? 'rb-fsevent' : false
   gem 'rb-inotify', '~> 0.9', require: RUBY_PLATFORM =~ /linux/i ? 'rb-inotify' : false
-  gem 'rspec-rails', require: false
+  gem 'rspec-rails', '>= 3.2.3', require: false
   gem 'shoulda', require: false
   gem 'simplecov', require: false
   gem 'timecop'
   gem 'rspec-given'
-  gem 'rspec-html-matchers'
-  gem 'spork-rails'
+  gem 'rspec-html-matchers', '>= 0.8.0'
+  gem 'spork-rails', '>= 4.0.0'
   gem 'pry-nav'
   gem 'byebug', require: ENV['RM_INFO'].nil?
 end
