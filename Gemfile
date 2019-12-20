@@ -6,7 +6,7 @@ end
 
 if rails_master?
   gem 'arel', git: 'https://github.com/rails/arel.git'
-  gem 'rails', git: 'https://github.com/rails/rails.git'
+  gem 'rails', '4.2.7.1'
 else
   # Rails 5 is going to ship with Action Cable, we have no use for it as
   # we are API driven, AC introduces dependencies on Event Machine,
@@ -28,7 +28,7 @@ else
 end
 
 gem 'sprockets', '~> 3.6.3'
-gem 'responders', '~> 2.0'
+gem 'responders', '~> 2.3', '>= 2.3.0'
 
 gem 'http_accept_language', '~>2.0.5', require: false
 
@@ -36,7 +36,7 @@ gem 'http_accept_language', '~>2.0.5', require: false
 gem 'ember-rails' , '0.18.5'
 gem 'ember-source' , '1.12.2'
 gem 'ember-data-source', "1.0.0.beta.16.1"
-gem "ember-handlebars-template", '0.7.3'
+gem "ember-handlebars-template", "0.7.3"
 gem 'barber', '0.11.1'
 gem 'babel-transpiler', '0.7.0'
 
@@ -50,11 +50,11 @@ gem 'nokogiri'
 
 gem 'http'
 
-gem 'omniauth'
-gem 'omniauth-facebook'
-gem 'omniauth-github'
-gem 'omniauth-oauth2', require: false
-gem 'omniauth-google-oauth2'
+gem 'omniauth', '>= 1.3.1'
+gem 'omniauth-facebook', '>= 4.0.0'
+gem 'omniauth-github', '>= 1.1.2'
+gem 'omniauth-oauth2', '>= 1.4.0', require: false
+gem 'omniauth-google-oauth2', '>= 0.4.1'
 
 # 3rd party system api's
 gem 'megam_api', '1.6.6'
@@ -71,11 +71,11 @@ gem 'rake'
 gem 'excon' #used by metrics  ? Can we use excon
 
 gem 'therubyracer'
-gem 'rack-protection' # security
+gem 'rack-protection' , '>= 1.5.3' # security
 
 # keep it like this, or else rake asset:precompile will fail
 gem 'sass'
-gem 'sass-rails', '~> 5.0.5'
+gem 'sass-rails', '~> 5.0.6'
 gem 'uglifier'
 
 
@@ -89,23 +89,23 @@ group :test, :development do
   gem 'listen', '0.7.3', require: false
   gem 'certified', require: false
   gem 'fabrication', '2.9.8', require: false
-  gem 'discourse-qunit-rails', require: 'qunit-rails'
+  gem 'discourse-qunit-rails', '0.0.9'
   gem 'mocha', require: false
   gem 'rb-fsevent', require: RUBY_PLATFORM =~ /darwin/i ? 'rb-fsevent' : false
   gem 'rb-inotify', '~> 0.9', require: RUBY_PLATFORM =~ /linux/i ? 'rb-inotify' : false
-  gem 'rspec-rails', require: false
+  gem 'rspec-rails', '>= 3.2.3', require: false
   gem 'shoulda', require: false
   gem 'simplecov', require: false
   gem 'timecop'
   gem 'rspec-given'
   gem 'rspec-html-matchers'
-  gem 'spork-rails'
+  gem 'spork-rails', '>= 4.0.0'
   gem 'pry-nav'
   gem 'byebug', require: ENV['RM_INFO'].nil?
 end
 
 group :development do
-  gem 'better_errors'
+  gem 'better_errors', '>= 2.1.1'
   gem 'binding_of_caller'
   gem 'librarian', '>= 0.0.25', require: false
 end
@@ -117,10 +117,10 @@ gem 'tzinfo-data'
 
 # IMPORTANT: mini profiler monkey patches, so it better be required last
 gem 'flamegraph', require: false
-gem 'rack-mini-profiler', require: false
+gem 'rack-mini-profiler', '>= 0.10.1', require: false
 
 # passenger server
-gem 'passenger', group: :production
+gem 'passenger', '>= 5.0.30', group: :production
 
 gem 'rbtrace', require: false, platform: :mri
 
